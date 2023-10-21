@@ -1,0 +1,77 @@
+<% layout('layouts/boilerplate1') %>
+
+
+
+
+ 
+    
+    <!-- offset by 3 means to ignore 3 space and use next 6 spaces. this is to center -->
+     
+        <div class="btn-group mt-5 offset-1 col-8"  role="group" aria-label="Basic example">
+            <a style="width: 220px; margin-left: 150px;" class="btn btn-secondary mb-5" href="/home/ticket/open">Open Tickets</a>
+            <a style="width: 220px; " class="btn btn-secondary mb-5" href="/home/ticket/action">Author Action</a>
+            <a style="width: 220px; " class="btn btn-secondary mb-5" href="/home/ticket/closed">Closed Tickets</a>
+          </div>
+
+  <div class="offset-3 " style="background-color: #EAEDED; width: 520px;">        
+      <div class=" offset-1 col-10 mt-3">
+        <br >
+        <h1 class="text-center mt-1">Create Ticket!!!</h1>
+        <hr>
+        <form action="/home/ticket" method="POST" novalidate class="validated-form"> 
+            <!-- above class should match the script below -->
+            <div class="mb-3">
+                <label class="form-label" for="title">Title: </label>
+                <input class="form-control" type="text" name="title" id="title" required>
+                <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="description" required>Description</label>
+                <textarea class="form-control" type="text" name="description" id="description">
+                </textarea>
+                <div class="valid-feedback">Description added.. makes it more informative!</div>
+            </div>
+            <!-- <div class="mb-3">
+                <label class="form-label" for="date">Date</label>
+                <input class="form-control" type="date" name="date" id="date" required>
+                <div class="valid-feedback">Date selected!</div>
+            </div> -->
+            
+            <div class="row mb-3 mt-3">
+                <button class="btn btn-success mt-3 mb-3" style="width: 580px; margin-left: 1px; ">submit</button>
+
+                <a id="b" class="btn btn-primary mb-3" style="width: 580px;" href="/userhome">Back</a>
+                
+            </div>
+            
+        </form>
+      </div>
+    </div>
+    </div>
+  
+
+
+
+ <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    // change it to const
+  const forms = document.querySelectorAll('.validated-form')
+
+  // Loop over them and prevent submission
+  Array.from(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+ </script>

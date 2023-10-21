@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DormEase</title>
+
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        /* Define a class for the full-page background */
+        .full-page-background {
+            background-image: url('https://images.unsplash.com/photo-1543193158-07c01963e800?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2065&q=80'); /* Replace 'your-image.jpg' with your image file path */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+        }
+        .c1 {
+            border: 5px solid;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px;
+            }
+            .c2 {
+            border: 5px solid;
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px;
+            }
+        #b{
+            width:570px;
+            align-items: center;
+        }
+        h3{
+            background-color: aliceblue;
+        }
+        #message{
+            text-decoration: double;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" style="text-align: center;"> <b>DormEase </b></a>
+        </div>
+    </nav>
+
+    <div class="container-fluid full-page-background">
+
+        <div class="c1">
+            <form action="">
+                <a id="b" class="btn btn-primary" href="/admin">ADMIN LOGIN</a>
+            </form>
+        </div>
+
+        <div class="c2">
+            <a id="b" class="btn btn-primary" href="/login">RESIDENT LOGIN</a>
+        </div>
+
+
+    </div>
+
+        
+
+<!-- Include Bootstrap JS and jQuery (required for Bootstrap) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

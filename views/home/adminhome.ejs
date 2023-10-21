@@ -1,0 +1,116 @@
+<% layout('layouts/boilerplate2') %>
+
+
+<main>
+
+  <div class="album py-3 bg-body-tertiary">
+
+    <div class="container">
+
+      <strong style="font-size: 36px">Welcome, Admin </strong>
+      <br>
+      <br>
+
+
+
+      <!-- Features -->
+      <br>
+      <strong style="font-size: 28px">Admin Panel </strong>
+      <hr>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="https://www.crown.edu/wp-content/uploads/2020/10/miller-3.jpg" alt="No img">
+            <div class="card-body">
+              <strong style="font-size: 26px">Onboarding </strong>
+              <p class="card-text" style="font-size: 22px; text-align: justify;">"Manage onboarding, and offboarding processes, ensuring efficient dormitory operations and a smooth transition for residents."</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a class="btn btn-success" href="/register" role="button">Onboard a resident</a>
+                  <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+                </div>
+                <!-- <small class="text-body-secondary">58 mins</small> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="https://www.knowledgecity.com/blog/wp-content/uploads/2022/01/creative-bulletin-board-ideas.jpg" alt="no image found!">
+            <div class="card-body">
+              <strong style="font-size: 26px">Create Notification </strong>
+              <p class="card-text" style="font-size: 22px; text-align: justify;">"Instant Notificationss feature, allows admin to effortlessly create and broadcast alerts to every resident's in just a few clicks."</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a class="btn btn-success" href="/notifications" role="button">Create Notfication</a>
+                  <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+                </div>
+                <!-- <small class="text-body-secondary">9 mins</small> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+           <img src="https://kairifm.com/wp-content/uploads/2019/09/decent-homes-repairs-MIN.jpg" alt="no image">
+            <div class="card-body">
+              <strong style="font-size: 26px">Ticket Management</strong>
+              <p class="card-text" style="font-size: 22px; text-align: justify;">"View and hanlde tickets created by the residents and provide seamless response and fix to the tickets raised in lesser time"</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  
+                  <a class="btn btn-success" href="/adminhome/ticket/open" role="button">View and handle tickets</a>
+                  <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+                </div>
+                <!-- <small class="text-body-secondary">9 mins</small> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+
+
+    </div>
+  </div>
+
+</main>
+
+<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+
+
+
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+'use strict'
+
+// Fetch all the forms we want to apply custom Bootstrap validation styles to
+  // change it to const
+const forms = document.querySelectorAll('.validated-form')
+
+// Loop over them and prevent submission
+Array.from(forms)
+  .forEach(function (form) {
+    form.addEventListener('submit', function (event) {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+</script>
+
+</body>
+
+<footer class="footer bg-light py-3 mt-auto">
+  <div class="container">
+      <span class="text-muted">&copy; DormEase 2023</span>
+  </div>
+</footer>
+</html>

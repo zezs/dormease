@@ -1,0 +1,22 @@
+      <div class="row" style="display:inline-flex">
+      <% for(let notice of notices) {%>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" >
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="<%=notice.image%>" alt="no image found!">
+            <div class="card-body">
+                <strong style="font-size: 26px"><%=notice.title %> </strong>
+                <hr>
+                <p class="card-text" style="font-size: 22px; text-align: justify;"><%=notice.description %></p>
+                <hr>
+                <% let date = notice.date.toDateString() %>
+                <h5>Posted On: <%=date %></h5>
+
+            </div>
+          </div>
+        </div>
+       
+        </div>
+      
+        <% } %>
+      </div>

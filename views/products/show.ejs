@@ -1,0 +1,108 @@
+<% layout('layouts/boilerplate') %>
+
+
+ 
+<div class="offset-1 col-9 mt-5">
+  <div class="row">
+    <div class="col-6 ">
+        <div class="card mb-3" >
+            <img src="<%=product.image%>" class="card-img-top" alt="No image available">
+            <div class="card-body">
+              <h5 class="card-title"><%=product.title%></h5>
+              <p class="card-text"><%=product.description%></p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><%=product.location %></li>
+              <li class="list-group-item">Posted by: <b> <%=product.author.username %> </b></li>
+              <li class="list-group-item">Price: € <%=product.price %></li>
+            </ul>
+            <div class="card-body">
+              <% if(currentUser&& product.author.equals(currentUser._id)) {%>
+              <a class="card-link btn btn-warning" href="/products/<%=product._id%>/edit" >Edit</a>
+            <form class="d-inline" method="POST" action="/products/<%=product._id%>?_method=DELETE" >
+                <button class="btn btn-danger">Delete</button>
+            </form>
+            <% } %>
+              <a class="card-link btn btn-secondary" href="/products" class="card-link">Back</a>
+            </div>
+          </div>     
+    </div>
+
+    <div class="col-6 mb-3">
+      <h2>Comment Section</h2>
+      <form method="POST" action="/products/<%=product._id%>/comments" class="mb-3 validated-form" novalidate>
+        <div class="mb-3">
+            <!-- <label class="form-label" for="rating">Rating</label>
+            <input class="form-range" type="range" min="1" max="5" name="comments[rating]">
+            <div class="valid-feedback">Looks good!</div> -->
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="body">Leave a comment below!</label>
+          <textarea class="form-control" name="comment[body]" id="body" cols="30" rows="2" required></textarea>
+          <div class="valid-feedback">Description added.. makes it more informative!</div>
+        </div>
+        <button class="btn btn-success">Submit</button>
+      </form>
+
+      <% for(let comment of product.comments) { %>
+        <div class="card mb-3">
+            <div class="card-body">
+              <!-- <h5 class="card-title">Rating: <%=comment.rating%></h5> -->
+              
+              <p class="card-text"> <b>Comment:</b> <%=comment.body%></p>
+              <%=console.log(comment.author.username) %>
+              <h6 class="card-subtitle mb-2 text-muted">Posted by: <%=comment.author.username %> </h6>
+
+              <% if(currentUser&& comment.author.equals(currentUser._id)) {%>
+              <form method="POST" action="/products/<%=product._id%>/comments/<%=comment._id%>?_method=DELETE">
+                <button class="btn btn-sm btn-danger">Delete</button>
+              </form>
+              <% } %>
+
+            </div>
+        </div>
+        
+      <% } %>
+   </div>
+  </div>
+</div>
+
+
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+'use strict'
+
+// Fetch all the forms we want to apply custom Bootstrap validation styles to
+  // change it to const
+const forms = document.querySelectorAll('.validated-form')
+
+// Loop over them and prevent submission
+Array.from(forms)
+  .forEach(function (form) {
+    form.addEventListener('submit', function (event) {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+</script>
+
+    <!-- <h2> <%=product.title %>  </h2>
+    <h3><%=product.location %></h3>
+    <h3>Price: $<%=product.price%> </h3>
+    <img src="<%= product.image %>" alt="">
+    <p><%= product.description %></p>
+    <br>
+    <a href="/products/<%=product._id%>/edit">+ Edit</a>
+    <br>
+    <a href="/products">- Back</a>
+    
+    <form method="POST" action="/products/<%=product._id%>?_method=DELETE" >
+    <button>+ Delete</button>
+    </form> -->
+

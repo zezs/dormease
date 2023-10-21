@@ -1,0 +1,79 @@
+<% layout('layouts/boilerplate2') %>
+
+
+
+
+<div class="offset-3 col-6 mt-5" style="background-color: #EAEDED; ">
+    <br>
+    <h1 style="text-align: center; ">On-Board a new student</h1>
+    <hr>
+    <div class="offset-1 col-10">
+      <form action="/register" method="POST" novalidate class="validated-form">
+
+        <div class="mb-3">
+            <label class="form-label" for="fname">First name: </label>
+            <input class="form-control" type="text" name="fname" id="fname" required>
+            <div class="valid-feedback">Looks good!</div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="lname">Last name: </label>
+            <input class="form-control" type="text" name="lname" id="lname" required>
+            <div class="valid-feedback">Looks good!</div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="roomnumber">Room Number: </label>
+            <input class="form-control" type="number" name="roomnumber" id="roomnumber" required>
+            <div class="valid-feedback">Looks good!</div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="username">Username: </label>
+            <input class="form-control" type="text" name="username" id="username" required>
+            <div class="valid-feedback">Looks good!</div>
+        </div>
+    
+        <div class="mb-3">
+            <label class="form-label" for="email">Email: </label>
+            <input class="form-control" type="email" name="email" id="email" required>
+            <div class="valid-feedback">Looks good!</div>
+        </div>
+    
+        <div class="mb-4">
+            <label class="form-label" for="password">Password: </label>
+            <input class="form-control" type="password" name="password" id="password" required>
+            <div class="valid-feedback">Looks good!</div>
+        </div>
+    
+        <button class="btn btn-success mb-4">Register</button>
+        <a class="btn btn-secondary mb-4" href="/adminhome" role="button">Back to Admin Panel</a>
+    
+    </form>
+    </div>
+</div>
+
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    // change it to const
+  const forms = document.querySelectorAll('.validated-form')
+
+  // Loop over them and prevent submission
+  Array.from(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+ </script>

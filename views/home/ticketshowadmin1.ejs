@@ -1,0 +1,87 @@
+<% layout('layouts/boilerplate2') %>
+
+
+
+
+ 
+<% let x = 0;  %>
+<div class="row">
+
+    <div class="col-10 offset-0 ">
+        
+        <div class="btn-group mt-5 offset-4 col-5 " role="group" aria-label="Basic example">
+            <a style="width: 220px;" class="btn btn-secondary mb-5" href="/adminhome/ticket/action">Author Action</a>
+            <a style="width: 220px;" class="btn btn-secondary mb-5" href="/adminhome/ticket/closed">Closed tickets</a>
+        </div>
+
+          
+
+          
+        <div class="offset-2 col-9" >
+          <h2 style="text-align: center;">Open Tickets</h2>
+          <h5 style="text-align: center;">Open section lists the tickets which are currently handled by the warden!</h5>
+          
+          <hr>
+        <table class="table table-striped" >
+            <thead class="thead">
+              <tr>
+                <th scope="col" style="text-align: center;">No.</th>
+                <th scope="col" style="text-align: center;">Title</th>
+                <th scope="col" style="text-align: center;">Username</th>
+                <th scope="col" style="text-align: center;">Date</th>
+                <th scope="col" style="text-align: center;">Description</th>
+                <th scope="col" style="text-align: center;">Action</th>
+                
+
+              </tr>
+            </thead>
+            <tbody>
+                <% for(let t of tickets) { %>
+              <tr>
+                <th scope="row"><%= x=x+1 %></th>
+                <td style="text-align: center;"><%=t.title %></td>
+                <td style="text-align: center;"><%=t.username %></td>
+                <td style="text-align: center;"><%=t.date.toDateString()%> </td>
+                <td style="text-align: justify;"><%=t.description %></td>
+                <td>
+                  <form method="POST" action="/adminhome/ticket/<%=t._id%>">
+                    <button class="btn btn-sm btn-success">Done</button>
+                </form>
+                </td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+        <a id="b" class="btn btn-primary mb-3 mt-4" style="width: 280px; margin-left: 420px; " href="/adminhome">Back Home</a>
+   </div>
+
+   
+</div>
+
+
+
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+'use strict'
+
+// Fetch all the forms we want to apply custom Bootstrap validation styles to
+  // change it to const
+const forms = document.querySelectorAll('.validated-form')
+
+// Loop over them and prevent submission
+Array.from(forms)
+  .forEach(function (form) {
+    form.addEventListener('submit', function (event) {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+</script>
+

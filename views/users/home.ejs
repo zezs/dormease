@@ -1,0 +1,181 @@
+<% layout('layouts/boilerplate') %>
+
+
+
+
+
+<main>
+
+  <div class="album py-3 bg-body-tertiary">
+
+    
+
+      <strong style="font-size: 36px">Welcome!</strong>
+      <br>
+      <br>
+
+    <!-- Notice Board -->
+      <br>
+      <strong style="font-size: 28px">Notice Board </strong>
+      <hr>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" >
+        <% for (let notice of notices) { %>
+        <div class="col">
+          <div class="card shadow-sm" style="height: 600px;">
+            <img src="<%=notice.image %>" alt="no image found!" style="height: 300px;">
+            <div class="card-body">
+              <strong style="font-size: 26px"><%=notice.title %></strong>
+              <hr>
+              <p class="card-text" style="font-size: 22px; text-align: justify;"><%=notice.description %></p>
+              <hr>
+              <h6>Posted on: <%=notice.date.toDateString() %></h6>
+            </div>
+          </div>
+        </div>
+          <% } %>
+      </div>
+
+
+    <br>
+
+
+    <!-- functionalities -->
+    <br>
+      <strong style="font-size: 28px">Functionalities </strong>
+      <hr>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src=https://images.pexels.com/photos/4700420/pexels-photo-4700420.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1 alt="no image found!">
+            <div class="card-body">
+              <strong style="font-size: 26px">Laundary Service</strong>
+              <hr>
+              <p class="card-text" style="font-size: 22px; text-align: justify;">"Streamline your laundary routine with our online laundary booking feature ensuring convenience ad saving you time"</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a class="btn btn-success"  role="button">Book Laundary</a>
+                  
+                  <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+                </div>
+                <hr>
+                <!-- <small class="text-body-secondary">58 mins</small> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="https://images.pexels.com/photos/5768107/pexels-photo-5768107.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="no image found!">
+            <div class="card-body">
+              <strong style="font-size: 26px">Quick Fix </strong>
+              <hr>
+              <p class="card-text" style="font-size: 22px; text-align: justify;">"Seamlessly initiate maintenance requests for swift issue resolution and an enhanced living experience. Await for House master's response"</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a class="btn btn-success"  role="button" href="/home/ticket">Create Maintenance ticket</a>
+                  <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+                </div>
+                <!-- <small class="text-body-secondary">9 mins</small> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img style="height: 280px;" src="https://www.reuseabox.co.uk/wp-content/uploads/2021/07/reduce-reuse-recycle-380x300-01.jpg" alt="no image found!">
+            <div class="card-body">
+              <strong style="font-size: 26px">BS13 Market Place</strong>
+              <hr>
+              <p class="card-text" style="font-size: 22px; text-align: justify;">"Giveaway corner feature allows resindeets to sahre and find free items, fostering a sense of community and sustainability"</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  
+                  <a class="btn btn-success" href="/products" role="button">Visit Marketplace</a>
+                  <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+                </div>
+                <!-- <small class="text-body-secondary">9 mins</small> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- extras -->
+      <br>
+      <br>
+      <strong style="font-size: 28px">Extras </strong>
+      <hr>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="https://images.pexels.com/photos/845265/pexels-photo-845265.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="no image found!">
+            <div class="card-body">
+              <strong style="font-size: 26px">Fire emergency</strong>
+              <hr>
+              <p class="card-text" style="font-size: 22px; text-align: justify;">"Manage onboarding, and offboarding processes, ensuring efficient dormitory operations and a smooth transition for residents."</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a class="btn btn-success" href="/blog1" role="button">View more</a>
+                  <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+                </div>
+                <!-- <small class="text-body-secondary">58 mins</small> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="https://images.pexels.com/photos/11263242/pexels-photo-11263242.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="no image found!">
+            <div class="card-body">
+              <strong style="font-size: 26px">Garbage disposal guidelines </strong>
+              <hr>
+              <p class="card-text" style="font-size: 22px; text-align: justify;">"Instant Notificationss feature, allows admin to effortlessly create and broadcast alerts to every resident's in just a few clicks."</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a class="btn btn-success" href="/blog2" role="button">View more</a>
+                  <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+                </div>
+                <!-- <small class="text-body-secondary">9 mins</small> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</main>
+
+<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+
+
+
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+'use strict'
+
+// Fetch all the forms we want to apply custom Bootstrap validation styles to
+  // change it to const
+const forms = document.querySelectorAll('.validated-form')
+
+// Loop over them and prevent submission
+Array.from(forms)
+  .forEach(function (form) {
+    form.addEventListener('submit', function (event) {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+</script>
+
+</body>
+
+
+</html>

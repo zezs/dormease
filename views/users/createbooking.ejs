@@ -1,0 +1,40 @@
+<% layout('layouts/boilerplate1') %>
+  <div class="offset-3 " style="background-color: #EAEDED; width: 520px;">        
+    <div class="selector">
+        <label for="month_selector">Select a date to book:</label>
+        <input type="date" id="month_selector" />
+      </div>
+      <div class="calendar"></div>
+      <div class="popup" hidden="true"></div>
+      <script src="./index.js"></script>
+    </div>
+  <%= console.log("Hello World") %>
+
+
+
+
+
+ <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+// (function () {
+//   'use strict'
+
+//   // Fetch all the forms we want to apply custom Bootstrap validation styles to
+//     // change it to const
+//   const forms = document.querySelectorAll('.validated-form')
+
+//   // Loop over them and prevent submission
+//   Array.from(forms)
+//     .forEach(function (form) {
+//       form.addEventListener('submit', function (event) {
+//         if (!form.checkValidity()) {
+//           event.preventDefault()
+//           event.stopPropagation()
+//         }
+
+//         form.classList.add('was-validated')
+//       }, false)
+//     })
+// })()
+
+ </script>

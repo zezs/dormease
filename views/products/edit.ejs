@@ -1,0 +1,81 @@
+<% layout('layouts/boilerplate') %>
+
+   <div class="col-6 offset-3">
+    <form method="POST" action="/products/<%=product._id%>?_method=PUT" novalidate class="validated-form">
+    
+        <div class="mb-3">
+            <label class="form-label" for="title">Title: </label>
+            <input class="form-control" type="text" name="title" id="title" value="<%=product.title%>" required>
+            <div class="form-validate">Looks good!</div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="location">Loaction: </label>
+            <input class="form-control" type="text" name="location" id="location" value="<%=product.location%>" required>
+            <div class="form-validate">Looks good!</div>
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label" for="image">Image URL: </label>
+            <input class="form-control" type="text" name="image" id="image" value="<%=product.image%>" required>
+            <div class="form-validate">Looks good!</div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="price">Price</label>
+            <div class="input-group mb-3">
+                <!-- id in span is connected to aria-describedby in input -->
+                <span class="input-group-text" id="price-label">$</span> 
+                <input type="text" class="form-control" id="price" name="price" value="<%=product.price %>"  aria-label="price" aria-describedby="price-label" required>
+                <div class="form-validate">Looks good!</div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="description">Description</label>
+            <textarea class="form-control" type="text" name="description" id="description" required>
+                <%=product.description%>
+            </textarea>
+            <div class="form-validate">Looks good!</div>
+        </div>
+
+        <button class="btn btn-info">submit</button>
+        </form>
+
+        <a href="/products">- BACK</a>
+   </div>
+
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        // change it to const
+    const forms = document.querySelectorAll('.validated-form')
+
+    // Loop over them and prevent submission
+    Array.from(forms)
+        .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+        }, false)
+        })
+    })()
+</script>
+
+
+
+
+
+
+
+
+
+    
