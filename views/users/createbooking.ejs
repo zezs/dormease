@@ -1,40 +1,220 @@
 <% layout('layouts/boilerplate1') %>
-  <div class="offset-3 " style="background-color: #EAEDED; width: 520px;">        
-    <div class="selector">
-        <label for="month_selector">Select a date to book:</label>
-        <input type="date" id="month_selector" />
-      </div>
-      <div class="calendar"></div>
-      <div class="popup" hidden="true"></div>
-      <script src="./index.js"></script>
-    </div>
-  <%= console.log("Hello World") %>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<link rel="stylesheet" href="./createbooking.css" />
+<div class="offset-3" style="background-color: #eaeded; width: 520px">
+  <div class="selector">
+    <label for="month_selector">Select a date to book:</label>
+    <input type="date" id="month_selector" />
+  </div>
+  <div class="calendar"></div>
+  <div class="popup" hidden="true"></div>
+  <div id="dummy" hidden="true"><%= user.username %></div>
+</div>
 
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  // (function () {
+  //   'use strict'
 
+  //   // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  //     // change it to const
+  //   const forms = document.querySelectorAll('.validated-form')
 
+  //   // Loop over them and prevent submission
+  //   Array.from(forms)
+  //     .forEach(function (form) {
+  //       form.addEventListener('submit', function (event) {
+  //         if (!form.checkValidity()) {
+  //           event.preventDefault()
+  //           event.stopPropagation()
+  //         }
 
+  //         form.classList.add('was-validated')
+  //       }, false)
+  //     })
+  // })()
 
- <script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-// (function () {
-//   'use strict'
+  let selected_date;
+  let selected_time;
+  let cal_event;
+  const starting_time = 6;
+  const slots = 16;
+  const month_selector = document.getElementById("month_selector");
+  function getDays(month) {
+    const today = new Date();
+    return new Date(today.getFullYear(), parseInt(month), 0).getDate();
+  }
+  async function handleBooking() {
+    await axios.post("/createbooking", {
+      date: selected_date,
+      time: selected_time,
+    });
+    const popup = document.querySelector(".popup");
+    // console.log(cal_event);
+    show_times(cal_event);
+    popup.hidden = true;
+  }
+  async function show_times(calendar_event) {
+    selected_date = calendar_event.target.value;
+    console.log(selected_date);
+    const maindiv = document.querySelector(".calendar");
+    if (selected_date === "") {
+      maindiv.innerHTML = "";
+      return;
+    }
+    cal_event = calendar_event;
+    const response = await axios.post("/getbookings", {
+      date: selected_date,
+    });
+    console.log(await response);
+    let existing_bookings = [];
+    await response.data.forEach((booking) => {
+      existing_bookings.push(booking.time);
+    });
+    maindiv.innerHTML = "";
+    for (let i = 0; i < slots; i++) {
+      const times = document.createElement("div");
+      times.setAttribute("id", "times");
+      times.setAttribute("tabindex", i + 1);
+      times.innerText =
+        (i + starting_time).toString().padStart(2, "0") +
+        ":00" +
+        " to " +
+        (i + starting_time + 1).toString() +
+        ":00";
 
-//   // Fetch all the forms we want to apply custom Bootstrap validation styles to
-//     // change it to const
-//   const forms = document.querySelectorAll('.validated-form')
+      if (existing_bookings.indexOf(times.innerText.slice(0, 5)) === -1) {
+        times.classList.add("open");
+        times.addEventListener("click", (e) => {
+          selected_time = e.target.innerText.slice(0, 5);
+          const popup = document.querySelector(".popup");
+          if (!popup.childNodes[0]) {
+            const confirmTxt = document.createElement("h2");
+            confirmTxt.innerHTML =
+              "Confirm booking on: " +
+              selected_date +
+              ", at " +
+              e.target.innerText +
+              "?";
 
-//   // Loop over them and prevent submission
-//   Array.from(forms)
-//     .forEach(function (form) {
-//       form.addEventListener('submit', function (event) {
-//         if (!form.checkValidity()) {
-//           event.preventDefault()
-//           event.stopPropagation()
-//         }
+            popup.append(confirmTxt);
+          } else {
+            popup.childNodes[0].innerHTML =
+              "Confirm booking on: " +
+              selected_date +
+              ", at " +
+              e.target.innerText +
+              "?";
+          }
+          if (popup.childNodes.length < 2) {
+            const button_div = document.createElement("div");
+            button_div.classList.add("button_div");
 
-//         form.classList.add('was-validated')
-//       }, false)
-//     })
-// })()
+            const confirm_button = document.createElement("button");
+            confirm_button.setAttribute("id", "confirm");
+            confirm_button.addEventListener("click", handleBooking);
+            confirm_button.innerText = "Confirm";
 
- </script>
+            const cancel_button = document.createElement("button");
+            cancel_button.setAttribute("id", "cancel");
+            cancel_button.addEventListener("click", () => {
+              popup.hidden = true;
+            });
+            cancel_button.innerText = "Cancel";
+            button_div.append(confirm_button);
+            button_div.append(cancel_button);
+            popup.append(button_div);
+            document.body.addEventListener("keydown", (e) => {
+              if (e.key === "Escape") cancel_button.click();
+            });
+          }
+          popup.hidden = false;
+          document.querySelector(".popup").focus();
+        });
+      } else {
+        times.classList.add("booked");
+        if (
+          response.data[existing_bookings.indexOf(times.innerText.slice(0, 5))]
+            .username &&
+          response.data[existing_bookings.indexOf(times.innerText.slice(0, 5))]
+            .username === document.getElementById("dummy").innerHTML
+        ) {
+          const your_booking = document.createElement("h4");
+          your_booking.innerText = "Booked by you!";
+          times.append(your_booking);
+        }
+      }
+
+      maindiv.append(times);
+    }
+  }
+  const today = new Date();
+  const month = today.getMonth() + 1;
+  const year = today.getFullYear();
+  const date = today.getDate();
+  const nextMonth = today.getMonth() + 2;
+  const min = year + "-" + month + "-" + date;
+  const max = year + "-" + nextMonth + "-" + getDays(nextMonth);
+  month_selector.min = min;
+  month_selector.max = max;
+  month_selector.addEventListener("change", show_times);
+</script>
+
+<style>
+  .selector {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+  }
+  .calendar {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #month_selector {
+    font-size: 2rem;
+  }
+
+  label {
+    font-size: 2rem;
+  }
+  .calendar {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  #times {
+    border: 1px solid black;
+    margin: 10px;
+    height: 200px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-size: x-large;
+  }
+
+  .popup {
+    position: fixed;
+    left: 25%;
+    top: 25%;
+    width: 45%;
+    height: fit-content;
+    text-align: center;
+    border: 1px solid black;
+    background-color: bisque;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .open {
+    background-color: lightgreen;
+  }
+  .booked {
+    background-color: rgb(255, 42, 42);
+  }
+</style>
